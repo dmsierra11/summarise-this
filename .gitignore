@@ -3,3 +3,6 @@
 
 # Ignore Node.js dependencies
 node_modules
+
+# Ignore main.js
+main.js
