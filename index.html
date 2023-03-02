@@ -2,31 +2,49 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <title>Remove Spaces</title>
+    <title>Format Transcript</title>
   </head>
   <body>
-    <h1>Remove Spaces</h1>
+    <h1>Format Transcript</h1>
     <form>
       <textarea id="input-text"></textarea>
-      <button type="button" onclick="removeSpaces()">Remove Spaces</button>
+      <button type="button" onclick="handleClick()">Format Transcript</button>
     </form>
     <p id="output-text"></p>
     <script>
-      function removeSpaces() {
-        var inputText = document.getElementById("input-text").value;
-        // Split the input text into lines
-        var lines = inputText.split(/\r?\n/);
-
-        // Loop through each line and remove vertical spaces
-        for (var i = 0; i < lines.length; i += 2) {
-          var timecode = document.createElement("div");
-          timecode.innerHTML = lines[i];
-          document.getElementById("output-container").appendChild(timecode);
-
-          var text = document.createElement("div");
-          text.innerHTML = lines[i + 1].replace(/\r?\n/g, "");
-          document.getElementById("output-container").appendChild(text);
+      function formatTranscript(input) {
+        // Split the input string by new lines
+        const lines = input.split("\n");
+        console.log(lines);
+        // Create an empty string to store the output
+        let output = "";
+        // Loop through each line
+        for (let i = 0; i < lines.length; i++) {
+          // Check if the line starts with a timestamp
+          if (
+            /^\d{2}:\d{2}:\d{2}\.\d{3}\s-->\s\d{2}:\d{2}:\d{2}\.\d{3}$/.test(
+              lines[i]
+            )
+          ) {
+            output = "";
+            output += lines[i].trim() + ":";
+          } else if (lines[i].trim() !== "") {
+            // Add the line without any modification
+            output += lines[i];
+            var someoneSays = document.createElement("div");
+            someoneSays.innerHTML = output;
+            document.body.appendChild(someoneSays);
+          }
+          // Add a new line character after each line (except the last one)
+          if (i < lines.length - 1) {
+            output += "\n";
+          }
         }
+      }
+
+      function handleClick() {
+        const inputText = document.getElementById("input-text").value;
+        const formattedText = formatTranscript(inputText);
       }
     </script>
   </body>
