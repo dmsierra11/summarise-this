@@ -14,7 +14,7 @@
     <script>
       function removeSpaces() {
         var inputText = document.getElementById("input-text").value;
-        var outputText = inputText.replace(/\s/g, "");
+        var outputText = inputText.replace(/[\n\r]/g, "");
         document.getElementById("output-text").innerHTML = outputText;
       }
     </script>
