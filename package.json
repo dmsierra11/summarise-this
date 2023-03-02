@@ -8,12 +8,14 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack",
     "dev": "webpack serve",
-    "deploy": "webpack && gh-pages -d dist"
+    "predeploy": "copyfiles -f dist/index.html public/",
+    "deploy": "gh-pages -d public"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "copyfiles": "^2.4.1",
     "dotenv-webpack": "^7.0.3",
     "gh-pages": "^5.0.0",
     "webpack": "^5.65.0",
