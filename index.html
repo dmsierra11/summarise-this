@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Remove Spaces</title>
+  </head>
+  <body>
+    <h1>Remove Spaces</h1>
+    <form>
+      <textarea id="input-text"></textarea>
+      <button type="button" onclick="removeSpaces()">Remove Spaces</button>
+    </form>
+    <p id="output-text"></p>
+    <script>
+      function removeSpaces() {
+        var inputText = document.getElementById("input-text").value;
+        var outputText = inputText.replace(/\s/g, "");
+        document.getElementById("output-text").innerHTML = outputText;
+      }
+    </script>
+  </body>
+</html>
