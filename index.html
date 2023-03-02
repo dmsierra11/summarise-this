@@ -14,8 +14,19 @@
     <script>
       function removeSpaces() {
         var inputText = document.getElementById("input-text").value;
-        var outputText = inputText.replace(/[\n\r]/g, "");
-        document.getElementById("output-text").innerHTML = outputText;
+        // Split the input text into lines
+        var lines = inputText.split(/\r?\n/);
+
+        // Loop through each line and remove vertical spaces
+        for (var i = 0; i < lines.length; i += 2) {
+          var timecode = document.createElement("div");
+          timecode.innerHTML = lines[i];
+          document.getElementById("output-container").appendChild(timecode);
+
+          var text = document.createElement("div");
+          text.innerHTML = lines[i + 1].replace(/\r?\n/g, "");
+          document.getElementById("output-container").appendChild(text);
+        }
       }
     </script>
   </body>
